@@ -5,30 +5,37 @@ import { useNavigate } from 'react-router-dom';
 const Login = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-    const [rememberMe, setRememberMe] = useState(false);
     const [isLoading, setIsLoading] = useState(false);
-    const [success, setSuccess] = useState(false);
     const navigate = useNavigate()
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        axios.post('http://localhost:3000/login', { email, password }).then(
-            result => {
-                console.log(result)
-                if (result.data === "Success") {
-                    navigate('/')
-                }
-                else {
-                    document.write("password incorrect please reload and try again!")
-                }
-            }
-        ).catch(err => console.log(err))
         setIsLoading(true);
-        setTimeout(() => {
+        try {
+            const response = await axios.post('http://localhost:3000/login', { email, password });
+            if (response.status === 200) {
+                navigate('/');
+            } else {
+                alert(response.data); 
+            }
+        } catch (error) {
+            console.error("Login error:", error);
+            if (error.response) {
+                if (error.response.status === 404) {
+                    alert("User not found. Please sign up.");
+                } else if (error.response.status === 401) {
+                    alert("Incorrect password. Please try again.");
+                } else {
+                    alert("Login failed. Please try again later.");
+                }
+            } else {
+                alert("Network error. Please check your connection.");
+            }
+        } finally {
             setIsLoading(false);
-            setSuccess(true);
-        }, 1500);
+        }
     };
+
 
 
     return (

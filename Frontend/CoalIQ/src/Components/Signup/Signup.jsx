@@ -11,22 +11,31 @@ const Signup = () => {
     const [success, setSuccess] = useState(false);
     const navigate = useNavigate()
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
         if (step < 2) {
             setStep(step + 1);
-        } else {
-            axios.post('http://localhost:3000/signup', { name, email, password }).then(
-                result => console.log(result)
-            ).catch(err => console.log(err))
-            setIsLoading(true);
-            setTimeout(() => {
-                setIsLoading(false);
-                setSuccess(true);
-                navigate('/login')
-            }, 1500);
+            return;
+        }
+        setIsLoading(true);
+        try {
+            const response = await axios.post('http://localhost:3000/signup', { name, email, password }, {
+                headers: { 'Content-Type': 'application/json' }
+            });
+            setSuccess(true);
+            navigate('/login');
+        } catch (error) {
+            if (error.response && error.response.status === 400) {
+                alert("Email already exists. Please use a different email or login.");
+            } else {
+                alert("Signup failed. Please try again.");
+            }
+            console.error("Signup error:", error);
+        } finally {
+            setIsLoading(false);
         }
     };
+
 
     const getStepContent = () => {
         switch (step) {
