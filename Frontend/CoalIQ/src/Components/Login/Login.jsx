@@ -12,7 +12,10 @@ const Login = () => {
         e.preventDefault();
         setIsLoading(true);
         try {
-            const response = await axios.post('http://localhost:3000/login', { email, password });
+            const response = await axios.post('http://localhost:3000/login', { email, password }, {
+                headers: { 'Content-Type': 'application/json' },
+                withCredentials: true,
+            });
             if (response.status === 200) {
                 navigate('/');
             } else {
