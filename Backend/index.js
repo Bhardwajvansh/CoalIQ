@@ -69,6 +69,19 @@ app.post('/signup', async (req, res) => {
     }
 });
 
+app.post('/logout', (req, res) => {
+    try {
+        res.clearCookie('token', {
+            httpOnly: true,
+            secure: process.env.NODE_ENV === 'production',
+            sameSite: 'strict'
+        });
+        return res.status(200).json("Logged out successfully");
+    } catch (err) {
+        console.error("Logout error:", err);
+        return res.status(500).json("Error during logout");
+    }
+});
 
 app.listen(3000, () => {
     console.log("Server running on port 3000");
