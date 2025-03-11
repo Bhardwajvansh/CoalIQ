@@ -6,6 +6,7 @@ import { Headlines } from "../Headlines/Headlines";
 import { Stats } from "../Stats/Stats";
 import { Carousel } from "../Carousel/Carousel";
 import { Footer } from "../Footer/Footer";
+import { Chatbot } from "../Chatbot/Chatbot";
 
 export const Hero = () => {
     const navigate = useNavigate();
@@ -88,6 +89,7 @@ export const Hero = () => {
             <Carousel />
             <Stats />
             <Headlines />
+            <Chatbot />
             <Footer />
         </div>
     );
