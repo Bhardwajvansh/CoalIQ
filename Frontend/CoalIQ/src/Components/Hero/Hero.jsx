@@ -26,8 +26,8 @@ export const Hero = () => {
         <div className="min-h-screen bg-gray-50 flex flex-col">
             <Navbar />
             
-            <div className="flex-grow container mx-auto px-4 py-8">
-                <div className="bg-gradient-to-tr from-indigo-100 to-purple-100 p-10 rounded-2xl shadow-lg max-w-5xl mx-auto relative overflow-hidden mt-6">
+            <div className="flex-grow container mx-auto">
+                <div className="bg-gradient-to-tr from-indigo-100 to-purple-100 p-10 shadow-lg mx-auto relative overflow-hidden mt-6">
                     <div className="absolute -top-20 -right-20 w-40 h-40 bg-indigo-400 rounded-full opacity-20"></div>
                     <div className="absolute -bottom-20 -left-20 w-40 h-40 bg-purple-400 rounded-full opacity-20"></div>
                     <div className="relative z-10">

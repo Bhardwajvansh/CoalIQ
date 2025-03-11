@@ -27,7 +27,7 @@ export const Navbar = () => {
 
     return (
         <nav className="bg-gradient-to-r from-indigo-600 to-purple-600 shadow-lg">
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative overflow-hidden">
+            <div className="mx-auto px-4 sm:px-6 lg:px-8 relative overflow-hidden">
                 <div className="absolute -top-20 -right-20 w-40 h-40 bg-indigo-400 rounded-full opacity-20"></div>
                 <div className="absolute -bottom-20 -left-20 w-40 h-40 bg-purple-400 rounded-full opacity-20"></div>
 
