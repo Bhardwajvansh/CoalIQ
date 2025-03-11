@@ -40,15 +40,15 @@ export const Navbar = () => {
 
                     <div className="hidden md:block">
                         <div className="ml-10 flex items-center space-x-4">
-                            <Link to="/" className="text-indigo-100 hover:bg-indigo-700 hover:text-white px-4 py-2 rounded-lg text-sm font-medium transition-all duration-300">
-                                Dashboard
-                            </Link>
-                            <Link to="/analytics" className="text-indigo-100 hover:bg-indigo-700 hover:text-white px-4 py-2 rounded-lg text-sm font-medium transition-all duration-300">
-                                Analytics
-                            </Link>
-                            <Link to="/reports" className="text-indigo-100 hover:bg-indigo-700 hover:text-white px-4 py-2 rounded-lg text-sm font-medium transition-all duration-300">
+                            <a href="#Headlines" className="text-indigo-100 hover:bg-indigo-700 hover:text-white px-4 py-2 rounded-lg text-sm font-medium transition-all duration-300">
+                                Headlines
+                            </a>
+                            <a href="#Statistics" className="text-indigo-100 hover:bg-indigo-700 hover:text-white px-4 py-2 rounded-lg text-sm font-medium transition-all duration-300">
+                                Statistics
+                            </a>
+                            <a href="/reports" className="text-indigo-100 hover:bg-indigo-700 hover:text-white px-4 py-2 rounded-lg text-sm font-medium transition-all duration-300">
                                 Reports
-                            </Link>
+                            </a>
                             <button
                                 onClick={handleLogout}
                                 className="bg-gradient-to-r from-red-500 to-red-600 hover:from-red-600 hover:to-red-700 text-white px-4 py-2 rounded-lg text-sm font-medium transition-all duration-300 transform hover:scale-105 shadow"

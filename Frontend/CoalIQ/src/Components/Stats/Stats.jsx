@@ -30,7 +30,7 @@ export const Stats = () => {
         { id: 'table', label: 'Data Table' }
     ];
     return (
-        <div className="flex flex-col items-center w-full container mx-automd:px-6">
+        <div id='Statistics' className="flex flex-col items-center w-full container mx-automd:px-6">
             <div className="p-4 md:p-10 mx-auto relative overflow-hidden mt-6 w-full rounded-lg">
                 <div className="relative z-10">
                     <h1 className="text-2xl md:text-3xl font-bold text-indigo-700 mb-2">Coal Resources in India</h1>
