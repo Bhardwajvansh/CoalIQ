@@ -42,7 +42,6 @@ const Signup = () => {
             case 0:
                 return (
                     <div className="space-y-6">
-                        <br />
                         <h2 className="text-2xl font-bold text-indigo-700">Let's get started</h2>
                         <p className="text-gray-600">First, tell us your name</p>
                         <input
@@ -58,9 +57,7 @@ const Signup = () => {
             case 1:
                 return (
                     <div className="space-y-6">
-                        <br />
                         <h2 className="text-2xl font-bold text-indigo-700">Welcome, {name}!</h2>
-                        <br />
                         <p className="text-gray-600">Now, let's get your email address</p>
                         <input
                             type="email"
@@ -75,7 +72,6 @@ const Signup = () => {
             case 2:
                 return (
                     <div className="space-y-6">
-                        <br />
                         <h2 className="text-2xl font-bold text-indigo-700">Almost there!</h2>
                         <p className="text-gray-600">Create a strong password</p>
                         <input
@@ -145,7 +141,6 @@ const Signup = () => {
                         </div>
 
                     </div>
-                    <br />
                     <div className="flex justify-between mt-8">
                         {step > 0 && (
                             <button
@@ -172,7 +167,7 @@ const Signup = () => {
 
                     </div>
                     <br />
-                    <p className="text-gray-600">
+                    <p className="text-gray-600 text-center">
                         Have an account?{' '}
                         <a href="/login" className="text-indigo-600 hover:text-indigo-800 font-medium transition-colors duration-300">
                             Log in

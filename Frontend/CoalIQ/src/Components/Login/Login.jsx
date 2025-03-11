@@ -19,7 +19,7 @@ const Login = () => {
             if (response.status === 200) {
                 navigate('/');
             } else {
-                alert(response.data); 
+                alert(response.data);
             }
         } catch (error) {
             console.error("Login error:", error);
@@ -48,8 +48,10 @@ const Login = () => {
                 <div className="absolute -bottom-20 -left-20 w-40 h-40 bg-purple-400 rounded-full opacity-20"></div>
 
                 <div className="relative z-10">
-                    <div className="text-center mb-10">
-                        <h2 className="text-3xl font-bold text-indigo-700 mb-4">Welcome back</h2>
+                    <div className="text-center mb-6">
+                        <h2 className="text-indigo-700 font-extrabold text-7xl tracking-tight hover:scale-105 transition-transform duration-300">
+                            CoalIQ
+                        </h2>
                         <p className="text-gray-600">Please log in to your account</p>
                     </div>
 
@@ -67,7 +69,6 @@ const Login = () => {
                                     required
                                 />
                             </div>
-                            <br />
                             <div>
                                 <div className="flex justify-between mb-2">
                                     <label htmlFor="password" className="block text-gray-700 font-medium">Password</label>
@@ -84,7 +85,6 @@ const Login = () => {
                                 />
                             </div>
                         </div>
-                        <br />
                         <button
                             type="submit"
                             className={`w-full py-4 px-6 bg-indigo-600 hover:bg-indigo-700 text-white font-medium rounded-lg transition-all duration-300 transform hover:scale-105 text-lg ${isLoading ? 'opacity-70 cursor-not-allowed' : ''}`}
