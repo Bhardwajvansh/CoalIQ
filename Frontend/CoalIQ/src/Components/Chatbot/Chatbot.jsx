@@ -18,6 +18,24 @@ export const Chatbot = () => {
     const toggleChat = () => {
         setIsOpen(!isOpen);
     };
+    const formatResponseText = (text) => {
+        if (!text) return "";
+
+        let formattedText = text.replace(/```([\s\S]*?)```/g, (match, codeContent) => {
+            return `<div class="bg-gray-800 text-gray-100 p-2 rounded my-2 overflow-x-auto"><pre>${codeContent}</pre></div>`;
+        });
+
+        formattedText = formattedText.replace(/`([^`]+)`/g, '<code class="bg-gray-100 px-1 rounded text-pink-600">$1</code>');
+        formattedText = formattedText.replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>');
+        formattedText = formattedText.replace(/\*([^*]+)\*/g, '<em>$1</em>');
+        formattedText = formattedText.replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2" class="text-blue-600 underline" target="_blank" rel="noopener noreferrer">$1</a>');
+        formattedText = formattedText.replace(/^- (.+)$/gm, '<li class="ml-4">$1</li>');
+        formattedText = formattedText.replace(/<li class="ml-4">(.*?)<\/li>(?:\s*<li class="ml-4">)/gs, '<li class="ml-4">$1</li><li class="ml-4">');
+        formattedText = formattedText.replace(/(<li class="ml-4">.*?<\/li>)+/gs, '<ul class="list-disc ml-4 my-2">$&</ul>');
+        formattedText = formattedText.replace(/\n/g, '<br />');
+        return formattedText;
+    };
+
     const generateGeminiResponse = async (userMessage) => {
         setIsLoading(true);
         try {
@@ -59,10 +77,16 @@ export const Chatbot = () => {
         const botResponse = await generateGeminiResponse(userMessage);
         setMessages(prevMessages => {
             const filtered = prevMessages.filter(msg => !msg.isLoading);
-            return [...filtered, { text: botResponse, isBot: true }];
+            return [...filtered, {
+                text: botResponse,
+                isBot: true,
+                isFormatted: true
+            }];
         });
     };
-
+    const renderFormattedText = (text) => {
+        return { __html: formatResponseText(text) };
+    };
     return (
         <div className="fixed bottom-6 right-6 z-50">
             <button
@@ -83,15 +107,8 @@ export const Chatbot = () => {
             {isOpen && (
                 <div className="absolute bottom-20 right-0 w-80 sm:w-96 bg-white rounded-lg shadow-xl overflow-hidden flex flex-col max-h-[500px]">
                     <div className="bg-gradient-to-r from-indigo-600 to-purple-600 p-4 flex-shrink-0">
-                        <div className="flex items-center">
-                            <div className="w-10 h-10 bg-white bg-opacity-20 rounded-full flex items-center justify-center">
-                                <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z" />
-                                </svg>
-                            </div>
-                            <div className="ml-3">
-                                <h3 className="text-white font-medium">CoalIQ AI Assistant</h3>
-                            </div>
+                        <div className="ml-3">
+                            <h3 className="text-white font-medium">CoalIQ AI Assistant</h3>
                         </div>
                     </div>
                     <div className="h-80 overflow-y-auto p-4 bg-gray-50 flex-grow">
@@ -102,8 +119,8 @@ export const Chatbot = () => {
                             >
                                 <div
                                     className={`rounded-lg px-4 py-2 max-w-3/4 ${message.isBot
-                                            ? 'bg-gray-200 text-gray-800'
-                                            : 'bg-gradient-to-r from-indigo-600 to-purple-600 text-white'
+                                        ? 'bg-gray-200 text-gray-800'
+                                        : 'bg-gradient-to-r from-indigo-600 to-purple-600 text-white'
                                         }`}
                                 >
                                     {message.isLoading ? (
@@ -112,6 +129,8 @@ export const Chatbot = () => {
                                             <div className="w-2 h-2 bg-gray-500 rounded-full animate-bounce" style={{ animationDelay: '150ms' }}></div>
                                             <div className="w-2 h-2 bg-gray-500 rounded-full animate-bounce" style={{ animationDelay: '300ms' }}></div>
                                         </div>
+                                    ) : message.isBot && message.isFormatted ? (
+                                        <div className="formatted-message" dangerouslySetInnerHTML={renderFormattedText(message.text)} />
                                     ) : (
                                         message.text
                                     )}
