@@ -82,27 +82,27 @@ export const Navbar = () => {
             {isOpen && (
                 <div className="md:hidden bg-indigo-800 bg-opacity-95 backdrop-filter backdrop-blur-sm">
                     <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
-                        <Link
-                            to="/"
+                        <a
+                            href="#Headlines"
                             className="text-indigo-100 hover:bg-indigo-700 hover:text-white block px-3 py-2 rounded-lg text-base font-medium transition-all duration-300"
                             onClick={() => setIsOpen(false)}
                         >
-                            Dashboard
-                        </Link>
-                        <Link
-                            to="/analytics"
+                            Headlines
+                        </a>
+                        <a
+                            href="#Statistics"
                             className="text-indigo-100 hover:bg-indigo-700 hover:text-white block px-3 py-2 rounded-lg text-base font-medium transition-all duration-300"
                             onClick={() => setIsOpen(false)}
                         >
-                            Analytics
-                        </Link>
-                        <Link
+                            Statistics
+                        </a>
+                        <a
                             to="/reports"
                             className="text-indigo-100 hover:bg-indigo-700 hover:text-white block px-3 py-2 rounded-lg text-base font-medium transition-all duration-300"
                             onClick={() => setIsOpen(false)}
                         >
                             Reports
-                        </Link>
+                        </a>
                         <button
                             onClick={() => {
                                 handleLogout();
