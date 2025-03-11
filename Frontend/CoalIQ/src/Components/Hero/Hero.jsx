@@ -3,6 +3,7 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { Navbar } from "../Navbar/Navbar";
 import { Headlines } from "../Headlines/Headlines";
+import { Stats } from "../Stats/Stats";
 
 export const Hero = () => {
     const navigate = useNavigate();
@@ -27,7 +28,7 @@ export const Hero = () => {
             <Navbar />
             
             <div className="flex-grow container mx-auto">
-                <div className="bg-gradient-to-tr from-indigo-100 to-purple-100 p-10 shadow-lg mx-auto relative overflow-hidden mt-6">
+                <div className="bg-gradient-to-tr from-indigo-100 to-purple-100 p-10 mx-auto relative overflow-hidden mt-6">
                     <div className="absolute -top-20 -right-20 w-40 h-40 bg-indigo-400 rounded-full opacity-20"></div>
                     <div className="absolute -bottom-20 -left-20 w-40 h-40 bg-purple-400 rounded-full opacity-20"></div>
                     <div className="relative z-10">
@@ -36,7 +37,7 @@ export const Hero = () => {
                     </div>
                 </div>
             </div>
-
+            <Stats />
             <Headlines />
         </div>
     );
