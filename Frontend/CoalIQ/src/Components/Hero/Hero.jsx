@@ -5,6 +5,7 @@ import { Navbar } from "../Navbar/Navbar";
 import { Headlines } from "../Headlines/Headlines";
 import { Stats } from "../Stats/Stats";
 import { Carousel } from "../Carousel/Carousel";
+import { Footer } from "../Footer/Footer";
 
 export const Hero = () => {
     const navigate = useNavigate();
@@ -87,6 +88,7 @@ export const Hero = () => {
             <Carousel />
             <Stats />
             <Headlines />
+            <Footer />
         </div>
     );
 };
