@@ -32,8 +32,8 @@ export const Headlines = () => {
     if (loading) return <div className="flex justify-center items-center h-64">Loading news...</div>;
     if (error) return <div className="text-red-500 p-4">Error loading news: {error}</div>;
     return (
-        <div id='Headlines' className="mx-auto py-4 lg:px-10 px-4 bg-gradient-to-tr from-indigo-100 to-purple-100">
-            <h1 className="text-3xl font-bold text-indigo-700 mb-4">Coal News Headlines</h1>
+        <div id='Headlines' className="mx-auto py-8 lg:px-10 px-4 bg-gradient-to-tr from-indigo-100 to-purple-100">
+            <h1 className="text-3xl font-bold text-indigo-700 mb-4">News Headlines</h1>
             <br />
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 {news.map((article, index) => (
